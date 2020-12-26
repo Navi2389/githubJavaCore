@@ -7,8 +7,6 @@ package task6ServerClient;
 // Бесплатный тарифный план предполагает получение погоды не более чем на 5 дней вперед
 // (этого достаточно для выполнения д/з).
 
-
-
 import okhttp3.*;
 
 import java.io.IOException;
@@ -27,11 +25,24 @@ public class Accuweather {
 
     MediaType JSON=MediaType.parse("application/json");
 
+//не понял как выполнить сегментированное построение HTTP реквеста с использованием билдера:
+
+        /*HttpUrl url = new HttpUrl.Builder()
+                .scheme("https://developer.accuweather.com/user/login")
+                .host("")
+//еще какие-то аргументы
+                .build();*//*
+        RequestBody requestBody=RequestBody.create(String.valueOf(url),JSON);*/
+
+
     String authBodyString="{"+
             "\"username\": \"Navi2389\", "+
             "\"password\": \"q1w2e3r4\""+"}";
     System.out.println(authBodyString);
     RequestBody requestBody=RequestBody.create(authBodyString,JSON);
+
+
+
 // значение 295212 для Санкт-Петербурга взяли с сайта
 // https://developer.accuweather.com/accuweather-locations-api/apis/get/locations/v1/cities/%7BcountryCode%7D/search
     Request request=new Request.Builder()
